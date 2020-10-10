@@ -461,24 +461,3 @@ if __name__ == "__main__":
                          'Rated Power (MW)': 3
                      }
     turb_diam      =  turb_specs['Dia (m)']
-    
-    
-    # Turbine x,y coordinates
-    turb_coords    =  getTurbLoc(r'..\turbine_loc_test.csv')
-    
-    # Load the power curve
-    power_curve    =  loadPowerCurve('..\power_curve.csv')
-    
-    # Pass wind data csv file location to function binWindResourceData.
-    # Retrieve probabilities of wind instance occurence.
-    wind_inst_freq =  binWindResourceData(r'..\wind_data_2007.csv')
-    
-    # check if there is any constraint is violated before we do anything. Comment 
-    # out the function call to checkConstraints below if you desire. Note that 
-    # this is just a check and the function does not quantifies the amount by 
-    # which the constraints are violated if any. 
-    checkConstraints(turb_coords, turb_diam)
-     
-    print('Calculating AEP......')
-    AEP = totalAEP(turb_diam, turb_coords, power_curve, wind_inst_freq) 
-    print('Total power produced by the wind farm is: ', "%.12f"%(AEP), 'GWh')
